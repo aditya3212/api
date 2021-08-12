@@ -6,8 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,8 +21,11 @@ public class AnnouncementsController {
 	//borrow list
 	//borrow list
 	//delete lender
-	  
+	
+	@Autowired
 	AnnouncementsService announcementsService;
+	
+	
 	
 	@PostMapping("/public/borrowrequest/add")
 	public ResponseEntity<Map> addBorrowRequestPublic(@RequestBody HashMap<String,String> payload)
@@ -89,6 +94,37 @@ public class AnnouncementsController {
 		return new ResponseEntity<Map>(hm, HttpStatus.OK);
 	}
 	
+	@GetMapping("/public/borrowrequest/list")
+	public ResponseEntity<HashMap> getBorrowRequestPublic(){
+		
+		
+		HashMap<String, Object> hm = new HashMap<String,Object>();
+		hm.put("status", "Success");
+		hm.put("statusCode", "S");
+		hm.put("result", announcementsService.getBorrowRequestPublic());
+		return new ResponseEntity<HashMap>(hm, HttpStatus.OK);
+	}
+	
+	@GetMapping("/public/lendrequest/list")
+	public ResponseEntity<HashMap> getLendRequestPublic(){
+		
+		
+		HashMap<String, Object> hm = new HashMap<String,Object>();
+		hm.put("status", "Success");
+		hm.put("statusCode", "S");
+		hm.put("result", announcementsService.getLendRequestPublic());
+		return new ResponseEntity<HashMap>(hm, HttpStatus.OK);
+	}
+	
+	@GetMapping("/private/borrowrequest/list")
+	public ResponseEntity<Map> getLoanRequestPrivate(@RequestParam("email") String email){
+		
+		Map<String, Object> hm = new HashMap();
+		hm.put("status", "Success");
+		hm.put("statusCode", "S");
+		hm.put("result", announcementsService.getLoanRequestPrivate(email));
+		return new ResponseEntity<Map>(hm, HttpStatus.OK);
+	}
 	
 	
 }

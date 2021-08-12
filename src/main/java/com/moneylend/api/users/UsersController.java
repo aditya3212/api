@@ -92,6 +92,8 @@ public class UsersController {
 
 	}
 	
+	
+	
 	//to check if given tenant url is present or not
 //	@GetMapping("/superadmin/validateemail")
 //	public ResponseEntity<Map> validateTenantUrl(@RequestParam("tenanturl") String tenantUrl  ) {

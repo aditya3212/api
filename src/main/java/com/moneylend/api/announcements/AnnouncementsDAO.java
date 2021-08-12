@@ -21,5 +21,6 @@ public interface AnnouncementsDAO {
 	
 	public void deleteLendRequestPublic(String lendRequestId, String borrowRequestId);
 	
+	public List<Object> getLoanRequestPrivate(String email);
 	
 }

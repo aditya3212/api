@@ -6,8 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -84,5 +87,28 @@ public class LoansController {
 		
 		return new ResponseEntity<Map>(hm,HttpStatus.OK);
 	}
+	
+	@GetMapping("/private/loan/given")
+	public ResponseEntity<Map> getLoanGiven(  @RequestParam("email") String email){
+		
+		Map<String, Object> hm = new HashMap();
+		hm.put("status", "Success");
+		hm.put("statusCode", "S");
+		hm.put("result", loansService.getLoanGiven(email));
+		return new ResponseEntity<Map>(hm, HttpStatus.OK);
+	}
+	
+	@GetMapping("/private/loan/taken")
+	public ResponseEntity<Map> getLoanTaken(@RequestParam("email") String email){
+		
+		Map<String, Object> hm = new HashMap();
+		hm.put("status", "Success");
+		hm.put("statusCode", "S");
+		hm.put("result", loansService.getLoanTaken(email));
+		return new ResponseEntity<Map>(hm, HttpStatus.OK);
+	}
+	
+	
+	
 
 }

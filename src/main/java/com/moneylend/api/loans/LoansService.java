@@ -9,4 +9,8 @@ public interface LoansService {
 	
 	public int returnLoan(HashMap<String,String> payload);
 	
+	public Object getLoanGiven(String email);
+	
+	public Object getLoanTaken(String email);
+	
 }
